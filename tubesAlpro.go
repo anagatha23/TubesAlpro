@@ -114,7 +114,7 @@ func login(A *UserARR, n *int) {
 }
 
 func forum(A *UserARR) {
-	fmt.Println("
+	fmt.Println("123")
 
 }
 
