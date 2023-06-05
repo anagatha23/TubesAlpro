@@ -147,16 +147,16 @@ func forum(F *ArrForum) {
 	fmt.Println("Silahkan Masukkan Pertanyaan: ")
 
 	fmt.Scan(&pertanyaan)
-	fmt.Println(" ")
-	fmt.Println("Maaf Anda Harus Registrasi Terlebih Dahulu")
-	fmt.Println("1.Registrasi, 2.Keluar")
 
+	fmt.Println(" ")
+	fmt.Println("Silahkan Memilih")
+	fmt.Println("1.Registrasi, 2.Keluar")
 	fmt.Scan(&inputPilihan)
 
 	if inputPilihan == "1" || inputPilihan == "1.Registrasi" {
 		Registrasi(&A, &n)
 	} else if inputPilihan == "2" || inputPilihan == "2.Keluar" {
-		menu()
+
 	}
 }
 
