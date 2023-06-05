@@ -69,6 +69,7 @@ func Registrasi(A *UserARR, n *int) {
 
 func LoopMenu(A *UserARR, n *int) {
 	var inputPilihanMenu string
+	var F ArrForum
 
 	for inputPilihanMenu != "5" {
 		menu()
@@ -77,6 +78,8 @@ func LoopMenu(A *UserARR, n *int) {
 			Registrasi(*&A, *&n)
 		} else if inputPilihanMenu == "2.Login" || inputPilihanMenu == "2" {
 			login(*&A, *&n)
+		} else if inputPilihanMenu == "3.Lihat Forum Konsultasi" || inputPilihanMenu == "3" {
+			forum(&F)
 		}
 	}
 }
@@ -123,9 +126,10 @@ func login(A *UserARR, n *int) {
 }
 
 func forum(F *ArrForum) {
-	var pertanyaan string
+	var pertanyaan, inputPilihan string
 	var n int
 	var A UserARR
+
 	fmt.Println("Bagaimana Cara Mencegah Kanker?")
 	fmt.Println("Mencegah kanker melibatkan berbagai langkah sehat yang dapat diambil dalam kehidupan sehari-hari. Berikut ini adalah beberapa langkah yang dapat membantu dalam mencegah kanker:")
 	fmt.Println("1. Hentikan kebiasaan merokok: Merokok diketahui menjadi salah satu faktor risiko utama untuk berbagai jenis kanker, termasuk kanker paru-paru, mulut, tenggorokan, dan pankreas.")
@@ -143,8 +147,17 @@ func forum(F *ArrForum) {
 	fmt.Println("Silahkan Masukkan Pertanyaan: ")
 
 	fmt.Scan(&pertanyaan)
+	fmt.Println(" ")
+	fmt.Println("Silahkan Memilih")
+	fmt.Println("1.Registrasi, 2.Keluar")
 
-	Registrasi(&A, &n)
+	fmt.Scan(&inputPilihan)
+
+	if inputPilihan == "1" || inputPilihan == "1.Registrasi" {
+		Registrasi(&A, &n)
+	} else if inputPilihan == "2" || inputPilihan == "2.Keluar" {
+		menu()
+	}
 }
 
 func main() {
