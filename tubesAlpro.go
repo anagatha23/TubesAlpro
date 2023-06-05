@@ -148,7 +148,7 @@ func forum(F *ArrForum) {
 
 	fmt.Scan(&pertanyaan)
 	fmt.Println(" ")
-	fmt.Println("Silahkan Memilih")
+	fmt.Println("Maaf Anda Harus Registrasi Terlebih Dahulu")
 	fmt.Println("1.Registrasi, 2.Keluar")
 
 	fmt.Scan(&inputPilihan)
