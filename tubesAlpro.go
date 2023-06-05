@@ -11,6 +11,13 @@ type User struct {
 
 type UserARR [50]User
 
+type Forum struct {
+	Pertanyaan string
+	Jawaban string
+}
+
+type ArrForum [50]Forum
+
 func menu() {
 	fmt.Println("          =====SELAMAT DATANG=====           ")
 	fmt.Println("        DI KONSULTASI KESEHATAN KAMI         ")
@@ -85,6 +92,7 @@ func search(A UserARR, username string, password string, n int) bool {
 	}
 	return found
 }
+
 func login(A *UserARR, n *int) {
 	var username, pswrd string
 	//var kn, kr int
@@ -113,9 +121,23 @@ func login(A *UserARR, n *int) {
 	}
 }
 
-func forum(A *UserARR) {
-	fmt.Println("123")
-
+func forum(F *ArrForum, n int) {
+	fmt.Println("Bagaimana Cara Mencegah Kanker?")
+	fmt.Println("Mencegah kanker melibatkan berbagai langkah sehat yang dapat diambil dalam kehidupan sehari-hari. Berikut ini adalah beberapa langkah yang dapat membantu dalam mencegah kanker:")
+	fmt.Println("1. Hentikan kebiasaan merokok: Merokok diketahui menjadi salah satu faktor risiko utama untuk berbagai jenis kanker, termasuk kanker paru-paru, mulut, tenggorokan, dan pankreas.")
+	fmt.Println("2. Konsumsi makanan sehat: Makan pola makan yang seimbang dan kaya akan buah-buahan, sayuran, biji-bijian utuh, dan sumber protein sehat dapat membantu mengurangi risiko kanker.")
+	fmt.Println("3. Pertahankan berat badan yang sehat: Obesitas dikaitkan dengan peningkatan risiko kanker tertentu, seperti kanker payudara, usus besar, rahim, dan ginjal.")
+	fmt.Println(" ")
+	fmt.Println("Bagaimana Cara Mengatasi Sesak Nafas?")
+	fmt.Println("Sesak nafas adalah kondisi yang serius dan memerlukan perhatian medis segera. Namun, jika Anda mengalami sesak nafas ringan atau sementara. Beberapa langkah yang dapat diambil:")
+	fmt.Println("1. Bernafas perlahan dan dalam: Cobalah untuk bernafas secara perlahan dan dalam melalui hidung. ")
+	fmt.Println("2. Hindari pemicu yang diketahui: Jika Anda memiliki alergi atau sensitivitas tertentu yang diketahui memicu sesak nafas, hindari paparan terhadap pemicu tersebut sesuai kemampuan Anda.")
+	fmt.Println(" ")
+	fmt.Println("Silahkan Masukkan Pertanyaan: ")
+	
+	fmt.Scanln(&pertanyaan)
+	
+	Registrasi(F, &n)
 }
 
 func main() {
