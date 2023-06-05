@@ -77,6 +77,7 @@ func LoopMenu(A *UserARR, n *int) {
 func search(A UserARR, username string, password string, n int) bool {
 	var found bool = false
 	var i int
+	//menggunakan sequential
 	i = 0
 	for !found && i < n {
 		found = A[i].Username == username && A[i].Password == password
@@ -113,7 +114,7 @@ func login(A *UserARR, n *int) {
 }
 
 func forum(A *UserARR) {
-	fmt.Println("test 1,2,3")
+	fmt.Println("
 
 }
 
