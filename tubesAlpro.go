@@ -13,7 +13,7 @@ type UserARR [50]User
 
 type Forum struct {
 	Pertanyaan string
-	Jawaban string
+	Jawaban    string
 }
 
 type ArrForum [50]Forum
@@ -97,6 +97,7 @@ func login(A *UserARR, n *int) {
 	var username, pswrd string
 	//var kn, kr int
 	var found bool
+	var F ArrForum
 
 	fmt.Println("Masukan Sesuai Registrasi")
 	fmt.Print("Username : ")
@@ -115,13 +116,16 @@ func login(A *UserARR, n *int) {
 			fmt.Scan(&pswrd)
 			found = search(*A, username, pswrd, *n)
 		}
-		forum(A)
+		forum(&F)
 	} else {
-		forum(A)
+		forum(&F)
 	}
 }
 
-func forum(F *ArrForum, n int) {
+func forum(F *ArrForum) {
+	var pertanyaan string
+	var n int
+	var A UserARR
 	fmt.Println("Bagaimana Cara Mencegah Kanker?")
 	fmt.Println("Mencegah kanker melibatkan berbagai langkah sehat yang dapat diambil dalam kehidupan sehari-hari. Berikut ini adalah beberapa langkah yang dapat membantu dalam mencegah kanker:")
 	fmt.Println("1. Hentikan kebiasaan merokok: Merokok diketahui menjadi salah satu faktor risiko utama untuk berbagai jenis kanker, termasuk kanker paru-paru, mulut, tenggorokan, dan pankreas.")
@@ -134,10 +138,10 @@ func forum(F *ArrForum, n int) {
 	fmt.Println("2. Hindari pemicu yang diketahui: Jika Anda memiliki alergi atau sensitivitas tertentu yang diketahui memicu sesak nafas, hindari paparan terhadap pemicu tersebut sesuai kemampuan Anda.")
 	fmt.Println(" ")
 	fmt.Println("Silahkan Masukkan Pertanyaan: ")
-	
-	fmt.Scanln(&pertanyaan)
-	
-	Registrasi(F, &n)
+
+	fmt.Scan(&pertanyaan)
+
+	Registrasi(&A, &n)
 }
 
 func main() {
