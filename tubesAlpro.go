@@ -137,6 +137,9 @@ func forum(F *ArrForum) {
 	fmt.Println("1. Bernafas perlahan dan dalam: Cobalah untuk bernafas secara perlahan dan dalam melalui hidung. ")
 	fmt.Println("2. Hindari pemicu yang diketahui: Jika Anda memiliki alergi atau sensitivitas tertentu yang diketahui memicu sesak nafas, hindari paparan terhadap pemicu tersebut sesuai kemampuan Anda.")
 	fmt.Println(" ")
+	fmt.Println("Apakah Hepatitis Dapat Diobati? Jika Bisa, Apa Hal Yang Harus Dilakukan?")
+	fmt.Println("Penyakit hepatitis dapat diobati tergantung pada jenis hepatitis yang Anda miliki. Ada beberapa jenis hepatitis, Berikut ini adalah informasi mengenai pengobatan masing-masing jenis hepatitis:")
+	fmt.Println("")
 	fmt.Println("Silahkan Masukkan Pertanyaan: ")
 
 	fmt.Scan(&pertanyaan)
