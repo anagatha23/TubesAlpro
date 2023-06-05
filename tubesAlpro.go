@@ -116,6 +116,12 @@ func forum(A *UserARR) {
 	fmt.Println("test 1,2,3")
 
 }
+
+func pertanyaan() {
+	fmt.Println("Silahkan Masukkan Pertanyaan")
+	fmt.Scan()
+}
+
 func main() {
 	var A UserARR
 	var n int
