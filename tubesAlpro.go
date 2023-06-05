@@ -117,11 +117,6 @@ func forum(A *UserARR) {
 
 }
 
-func pertanyaan() {
-	fmt.Println("Silahkan Masukkan Pertanyaan")
-	fmt.Scan()
-}
-
 func main() {
 	var A UserARR
 	var n int
