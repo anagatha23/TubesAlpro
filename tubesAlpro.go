@@ -18,6 +18,11 @@ type Forum struct {
 
 type ArrForum [50]Forum
 
+type menuBerForm struct{
+	beranda string
+	forumArr[50]Forum
+}
+
 func menu() {
 	fmt.Println("          =====SELAMAT DATANG=====           ")
 	fmt.Println("        DI KONSULTASI KESEHATAN KAMI         ")
@@ -84,6 +89,22 @@ func LoopMenu(A *UserARR, n *int) {
 	}
 }
 
+func menuBeranda(M *menuBerForm) {
+	fmt.Println("========== MENU ==========")
+	fmt.Println("1. Beranda")
+	fmt.Println("2. Forum")
+
+	var inputMenu string
+	var F ArrForum
+	fmt.Scan(&inputMenu)
+
+	for inputMenu != "1"{
+		if inputMenu == "2. Forum" || inputMenu == "2"{
+			forum(&F)
+		}
+	}
+}
+
 func search(A UserARR, username string, password string, n int) bool {
 	var found bool = false
 	var i int
@@ -100,7 +121,7 @@ func login(A *UserARR, n *int) {
 	var username, pswrd string
 	//var kn, kr int
 	var found bool
-	var F ArrForum
+	var M menuBerForm
 
 	fmt.Println("Masukan Sesuai Registrasi")
 	fmt.Print("Username : ")
@@ -119,9 +140,23 @@ func login(A *UserARR, n *int) {
 			fmt.Scan(&pswrd)
 			found = search(*A, username, pswrd, *n)
 		}
-		forum(&F)
+		menuBeranda(&M)
 	} else {
-		forum(&F)
+		menuBeranda(&M)
+	}
+}
+
+func InputMultipleString(value *string) {
+	var inputRune rune
+
+	*value = ""
+
+	for string(inputRune) != "\n" {
+		fmt.Scanf("%c", &inputRune)
+
+		if string(inputRune) != "\n" {
+			*value = *value + string(inputRune)
+		}
 	}
 }
 
@@ -145,8 +180,8 @@ func forum(F *ArrForum) {
 	fmt.Println("Penyakit hepatitis dapat diobati tergantung pada jenis hepatitis yang Anda miliki. Ada beberapa jenis hepatitis, Berikut ini adalah informasi mengenai pengobatan masing-masing jenis hepatitis:")
 	fmt.Println("")
 	fmt.Println("Silahkan Masukkan Pertanyaan: ")
-
 	fmt.Scan(&pertanyaan)
+	InputMultipleString(&pertanyaan)
 
 	fmt.Println(" ")
 	fmt.Println("Maaf Anda Harus Registrasi Dulu")
