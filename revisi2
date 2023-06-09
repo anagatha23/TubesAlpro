@@ -88,22 +88,17 @@ func LoopMenu(A *UserARR, n *int) {
 	}
 }
 
-func menuBeranda(A *UserARR, M *menuBerForm, n *int) {
+func menuBeranda(A *UserARR, M *menuBerForm, n *int, IndexUser int) {
 	var inputMenu string
 	var F ArrForum
 	var i int
 	var found int = -1
 
 	for found == -1 && i < *n {
-		if A[i].Role == "Pasien" || A[i].Role == "pasien" {
+		if A[IndexUser].Role == "Pasien" || A[IndexUser].Role == "pasien" {
 			found = i
-			fmt.Println(" ")
-			fmt.Println("Pasien")
-			fmt.Println("========== MENU ==========")
-			fmt.Println("1. Beranda")
-			fmt.Println("2. Forum")
-			fmt.Scan(&inputMenu)
-			for inputMenu != "1" && inputMenu != "1.Beranda" {
+
+			for inputMenu != "1" && inputMenu != "1.Beranda" && inputMenu != "2" && inputMenu != "2.Forum" {
 				fmt.Println(" ")
 				fmt.Println("Pasien")
 				fmt.Println("========== MENU ==========")
@@ -114,29 +109,23 @@ func menuBeranda(A *UserARR, M *menuBerForm, n *int) {
 				if inputMenu == "1.Beranda" || inputMenu == "1" {
 					LoopMenu(A, n)
 				} else if inputMenu == "2. Forum" || inputMenu == "2" {
-					forum2(A, &F, n)
+					forum2(A, &F, n, IndexUser)
 				}
 			}
-		} else if A[i].Role == "Dokter" || A[i].Role == "Dokter" {
+		} else if A[IndexUser].Role == "Dokter" || A[IndexUser].Role == "dokter" {
 			found = i
-			fmt.Println(" ")
-			fmt.Println("Dokter")
-			fmt.Println("========== MENU ==========")
-			fmt.Println("1. Beranda")
-			fmt.Println("2. Forum")
-			fmt.Println("3. TrendingTopik")
-			fmt.Scan(&inputMenu)
-			for inputMenu != "1" && inputMenu != "1.Beranda" {
+			for inputMenu != "1" && inputMenu != "1.Beranda" && inputMenu != "2" && inputMenu != "2.Forum" && inputMenu != "3" && inputMenu != "1.TrendingTopik" {
 				fmt.Println(" ")
 				fmt.Println("Dokter")
 				fmt.Println("========== MENU ==========")
 				fmt.Println("1. Beranda")
 				fmt.Println("2. Forum")
+				fmt.Println("3. TrendingTopik")
 				fmt.Scan(&inputMenu)
 				if inputMenu == "1.Beranda" || inputMenu == "1" {
 					LoopMenu(A, n)
 				} else if inputMenu == "2. Forum" || inputMenu == "2" {
-					forum2(A, &F, n)
+					forum2(A, &F, n, IndexUser)
 				} else if inputMenu == "3.TrendingTopik" || inputMenu == "3" {
 					tagTrend(M)
 				}
@@ -146,22 +135,21 @@ func menuBeranda(A *UserARR, M *menuBerForm, n *int) {
 	}
 }
 
-func search(A UserARR, username string, password string, n int) bool {
-	var found bool = false
-	var i int
+func search(A UserARR, username string, password string, n int) int {
+
 	//menggunakan sequential
-	i = 0
-	for !found && i < n {
-		found = A[i].Username == username && A[i].Password == password
-		i++
+	for i := 0; i < n; i++ {
+		if A[i].Username == username && A[i].Password == password {
+			return i
+		}
 	}
-	return found
+	return -1
 }
 
 func login(A *UserARR, n *int) {
 	var username, pswrd string
 	//var kn, kr int
-	var found bool
+
 	var M menuBerForm
 
 	fmt.Println("Masukan Sesuai Registrasi")
@@ -169,22 +157,17 @@ func login(A *UserARR, n *int) {
 	fmt.Scan(&username)
 	fmt.Print("Password : ")
 	fmt.Scan(&pswrd)
-	found = search(*A, username, pswrd, *n)
-	if !found {
-		for !found {
-			fmt.Println("Maaf Username dan Password tidak sesuai")
-			fmt.Println(" ")
-			fmt.Println("Masukan Sesuai Registrasi")
-			fmt.Print("Username : ")
-			fmt.Scan(&username)
-			fmt.Print("Password : ")
-			fmt.Scan(&pswrd)
-			found = search(*A, username, pswrd, *n)
-		}
-		menuBeranda(A, &M, *&n)
-	} else {
-		menuBeranda(A, &M, *&n)
+
+	for search(*A, username, pswrd, *n) == -1 {
+		fmt.Println("Maaf Username dan Password tidak sesuai")
+		fmt.Println(" ")
+		fmt.Println("Masukan Sesuai Registrasi")
+		fmt.Print("Username : ")
+		fmt.Scan(&username)
+		fmt.Print("Password : ")
+		fmt.Scan(&pswrd)
 	}
+	menuBeranda(A, &M, *&n, search(*A, username, pswrd, *n))
 }
 
 func InputMultipleString(value *string) {
@@ -238,20 +221,20 @@ func forum1(F *ArrForum) {
 	}
 }
 
-func forum2(A *UserARR, F *ArrForum, n *int) {
+func forum2(A *UserARR, F *ArrForum, n *int, indexUser int) {
 	var inpertanyaan, pilihMenu string
-	var inputPilih int
 	// var A UserARR
 	var M menuBerForm
+	var inputPilih int
 
+	fmt.Println("----------------")
+	fmt.Println(" ")
+	fmt.Println("1.Isiforum")
+	fmt.Println("2.Trending")
+	fmt.Println("3.Kembali")
+	fmt.Println("----------------")
+	fmt.Scan(&pilihMenu)
 	for pilihMenu != "3" || pilihMenu != "3.Kembali" {
-		fmt.Println("----------------")
-		fmt.Println(" ")
-		fmt.Println("1.Isiforum")
-		fmt.Println("2.Trending")
-		fmt.Println("3.Kembali")
-		fmt.Println("----------------")
-		fmt.Scan(&pilihMenu)
 		if pilihMenu == "1" || pilihMenu == "1.Isiforum" {
 			fmt.Println("Bagaimana Cara Mencegah Kanker?")
 			fmt.Println("Mencegah kanker melibatkan berbagai langkah sehat yang dapat diambil dalam kehidupan sehari-hari. Berikut ini adalah beberapa langkah yang dapat membantu dalam mencegah kanker:")
@@ -269,6 +252,7 @@ func forum2(A *UserARR, F *ArrForum, n *int) {
 			fmt.Println("")
 			fmt.Println("Silahkan Masukkan Pertanyaan: ")
 			fmt.Scan(&inpertanyaan)
+
 			InputMultipleString(&inpertanyaan)
 
 			fmt.Println("----------------------------")
@@ -286,10 +270,9 @@ func forum2(A *UserARR, F *ArrForum, n *int) {
 
 		} else if pilihMenu == "2" || pilihMenu == "2.Trending" {
 			searchTrend(&M)
-		} else if pilihMenu == "3" || pilihMenu == "Kembali" {
-			menuBeranda(A, &M, n)
+		} else if pilihMenu == "3" || pilihMenu == "3.Kembali" {
+			menuBeranda(A, &M, *&n, indexUser)
 		}
-
 	}
 }
 
