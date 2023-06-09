@@ -79,7 +79,7 @@ func LoopMenu(A *UserARR, n *int) {
 		menu()
 		fmt.Scan(&inputPilihanMenu)
 		if inputPilihanMenu == "1.Registrasi" || inputPilihanMenu == "1" {
-			Registrasi(*&A, *&n)
+			Registrasi(A, n)
 		} else if inputPilihanMenu == "2.Login" || inputPilihanMenu == "2" {
 			login(*&A, *&n)
 		} else if inputPilihanMenu == "3.Lihat Forum Konsultasi" || inputPilihanMenu == "3" {
@@ -103,11 +103,19 @@ func menuBeranda(A *UserARR, M *menuBerForm, n *int) {
 			fmt.Println("1. Beranda")
 			fmt.Println("2. Forum")
 			fmt.Scan(&inputMenu)
-			if inputMenu == "1" {
-			} else if inputMenu == "2. Forum" || inputMenu == "2" {
-				forum2(A, &F, *&n)
-			} else if inputMenu == "3.TrendingTopik" || inputMenu == "3" {
-				tagTrend(M)
+			for inputMenu != "1" && inputMenu != "1.Beranda" {
+				fmt.Println(" ")
+				fmt.Println("Pasien")
+				fmt.Println("========== MENU ==========")
+				fmt.Println("1. Beranda")
+				fmt.Println("2. Forum")
+				fmt.Scan(&inputMenu)
+
+				if inputMenu == "1.Beranda" || inputMenu == "1" {
+					LoopMenu(A, n)
+				} else if inputMenu == "2. Forum" || inputMenu == "2" {
+					forum2(A, &F, n)
+				}
 			}
 		} else if A[i].Role == "Dokter" || A[i].Role == "Dokter" {
 			found = i
@@ -118,11 +126,20 @@ func menuBeranda(A *UserARR, M *menuBerForm, n *int) {
 			fmt.Println("2. Forum")
 			fmt.Println("3. TrendingTopik")
 			fmt.Scan(&inputMenu)
-			if inputMenu == "1" {
-			} else if inputMenu == "2. Forum" || inputMenu == "2" {
-				forum2(A, &F, *&n)
-			} else if inputMenu == "3.TrendingTopik" || inputMenu == "3" {
-				tagTrend(M)
+			for inputMenu != "1" && inputMenu != "1.Beranda" {
+				fmt.Println(" ")
+				fmt.Println("Dokter")
+				fmt.Println("========== MENU ==========")
+				fmt.Println("1. Beranda")
+				fmt.Println("2. Forum")
+				fmt.Scan(&inputMenu)
+				if inputMenu == "1.Beranda" || inputMenu == "1" {
+					LoopMenu(A, n)
+				} else if inputMenu == "2. Forum" || inputMenu == "2" {
+					forum2(A, &F, n)
+				} else if inputMenu == "3.TrendingTopik" || inputMenu == "3" {
+					tagTrend(M)
+				}
 			}
 		}
 		i++
@@ -233,31 +250,31 @@ func forum2(A *UserARR, F *ArrForum, n *int) {
 	fmt.Println("3.Kembali")
 	fmt.Println("----------------")
 	fmt.Scan(&pilihMenu)
+	for pilihMenu != "3" || pilihMenu != "3.Kembali" {
+		if pilihMenu == "1" || pilihMenu == "1.Isiforum" {
+			fmt.Println("Bagaimana Cara Mencegah Kanker?")
+			fmt.Println("Mencegah kanker melibatkan berbagai langkah sehat yang dapat diambil dalam kehidupan sehari-hari. Berikut ini adalah beberapa langkah yang dapat membantu dalam mencegah kanker:")
+			fmt.Println("1. Hentikan kebiasaan merokok: Merokok diketahui menjadi salah satu faktor risiko utama untuk berbagai jenis kanker, termasuk kanker paru-paru, mulut, tenggorokan, dan pankreas.")
+			fmt.Println("2. Konsumsi makanan sehat: Makan pola makan yang seimbang dan kaya akan buah-buahan, sayuran, biji-bijian utuh, dan sumber protein sehat dapat membantu mengurangi risiko kanker.")
+			fmt.Println("3. Pertahankan berat badan yang sehat: Obesitas dikaitkan dengan peningkatan risiko kanker tertentu, seperti kanker payudara, usus besar, rahim, dan ginjal.")
+			fmt.Println(" ")
+			fmt.Println("Bagaimana Cara Mengatasi Sesak Nafas?")
+			fmt.Println("Sesak nafas adalah kondisi yang serius dan memerlukan perhatian medis segera. Namun, jika Anda mengalami sesak nafas ringan atau sementara. Beberapa langkah yang dapat diambil:")
+			fmt.Println("1. Bernafas perlahan dan dalam: Cobalah untuk bernafas secara perlahan dan dalam melalui hidung. ")
+			fmt.Println("2. Hindari pemicu yang diketahui: Jika Anda memiliki alergi atau sensitivitas tertentu yang diketahui memicu sesak nafas, hindari paparan terhadap pemicu tersebut sesuai kemampuan Anda.")
+			fmt.Println(" ")
+			fmt.Println("Apakah Hepatitis Dapat Diobati? Jika Bisa, Apa Hal Yang Harus Dilakukan?")
+			fmt.Println("Penyakit hepatitis dapat diobati tergantung pada jenis hepatitis yang dimiliki. Berikut ini adalah informasi mengenai pengobatan masing-masing jenis hepatitis:")
+			fmt.Println("")
+			fmt.Println("Silahkan Masukkan Pertanyaan: ")
+			fmt.Scan(&pertanyaan)
 
-	if pilihMenu == "3" || pilihMenu == "3.Kembali" {
-		menuBeranda(A, &M, *&n)
-	} else if pilihMenu == "1" || pilihMenu == "1.Isiforum" {
-		fmt.Println("Bagaimana Cara Mencegah Kanker?")
-		fmt.Println("Mencegah kanker melibatkan berbagai langkah sehat yang dapat diambil dalam kehidupan sehari-hari. Berikut ini adalah beberapa langkah yang dapat membantu dalam mencegah kanker:")
-		fmt.Println("1. Hentikan kebiasaan merokok: Merokok diketahui menjadi salah satu faktor risiko utama untuk berbagai jenis kanker, termasuk kanker paru-paru, mulut, tenggorokan, dan pankreas.")
-		fmt.Println("2. Konsumsi makanan sehat: Makan pola makan yang seimbang dan kaya akan buah-buahan, sayuran, biji-bijian utuh, dan sumber protein sehat dapat membantu mengurangi risiko kanker.")
-		fmt.Println("3. Pertahankan berat badan yang sehat: Obesitas dikaitkan dengan peningkatan risiko kanker tertentu, seperti kanker payudara, usus besar, rahim, dan ginjal.")
-		fmt.Println(" ")
-		fmt.Println("Bagaimana Cara Mengatasi Sesak Nafas?")
-		fmt.Println("Sesak nafas adalah kondisi yang serius dan memerlukan perhatian medis segera. Namun, jika Anda mengalami sesak nafas ringan atau sementara. Beberapa langkah yang dapat diambil:")
-		fmt.Println("1. Bernafas perlahan dan dalam: Cobalah untuk bernafas secara perlahan dan dalam melalui hidung. ")
-		fmt.Println("2. Hindari pemicu yang diketahui: Jika Anda memiliki alergi atau sensitivitas tertentu yang diketahui memicu sesak nafas, hindari paparan terhadap pemicu tersebut sesuai kemampuan Anda.")
-		fmt.Println(" ")
-		fmt.Println("Apakah Hepatitis Dapat Diobati? Jika Bisa, Apa Hal Yang Harus Dilakukan?")
-		fmt.Println("Penyakit hepatitis dapat diobati tergantung pada jenis hepatitis yang dimiliki. Berikut ini adalah informasi mengenai pengobatan masing-masing jenis hepatitis:")
-		fmt.Println("")
-		fmt.Println("Silahkan Masukkan Pertanyaan: ")
-		fmt.Scan(&pertanyaan)
-		InputMultipleString(&pertanyaan)
-		fmt.Println("Apa aja kek")
+			InputMultipleString(&pertanyaan)
+			menuBeranda(A, &M, *&n)
 
-	} else if pilihMenu == "2" || pilihMenu == "2.Trending" {
-		searchTrend(&M)
+		} else if pilihMenu == "2" || pilihMenu == "2.Trending" {
+			searchTrend(&M)
+		}
 	}
 }
 
