@@ -224,21 +224,16 @@ func forum2(A *UserARR, F *ArrForum, n *int, indexUser int) {
 	// var A UserARR
 	var M menuBerForm
 
-	//fmt.Println("----------------")
-	//fmt.Println(" ")
-	//fmt.Println("1.Isiforum")
-	//fmt.Println("2.Trending")
-	//fmt.Println("3.Kembali")
-	//fmt.Println("----------------")
-	//fmt.Scan(&pilihMenu)
-	for {
+	done := false
+	for !done {
 		fmt.Println("----------------")
 		fmt.Println(" ")
-		fmt.Println("1.Isiforum")
-		fmt.Println("2.Trending")
-		fmt.Println("3.Kembali")
+		fmt.Println("1. Isiforum")
+		fmt.Println("2. Trending")
+		fmt.Println("3. Kembali")
 		fmt.Println("----------------")
 		fmt.Scan(&pilihMenu)
+
 		if pilihMenu == "1" || pilihMenu == "1.Isiforum" {
 			fmt.Println("Bagaimana Cara Mencegah Kanker?")
 			fmt.Println("Mencegah kanker melibatkan berbagai langkah sehat yang dapat diambil dalam kehidupan sehari-hari. Berikut ini adalah beberapa langkah yang dapat membantu dalam mencegah kanker:")
@@ -255,7 +250,8 @@ func forum2(A *UserARR, F *ArrForum, n *int, indexUser int) {
 			fmt.Println("Penyakit hepatitis dapat diobati tergantung pada jenis hepatitis yang dimiliki. Berikut ini adalah informasi mengenai pengobatan masing-masing jenis hepatitis:")
 			fmt.Println("")
 
-			for {
+			doneQuestion := false
+			for ! doneQuestion {
 				fmt.Println("Silahkan Masukkan Pertanyaan: ")
 				fmt.Scan(&inpertanyaan)
 				InputMultipleString(&inpertanyaan)
@@ -271,27 +267,24 @@ func forum2(A *UserARR, F *ArrForum, n *int, indexUser int) {
 				} else if inputPilih == "2" {
 					fmt.Println("pertanyaan Dibatalkan")
 				}
+
 				fmt.Print("Ingin masukkan pertanyaan lagi (Ya/Tidak)? ")
 				fmt.Scan(&ulang)
-				if ulang == "Tidak" {
-					break
-				}
+				doneQuestion = ulang == "Tidak"
 			}
 
 		} else if pilihMenu == "2" || pilihMenu == "2.Trending" {
 			searchTrend(&M)
+
+		} else if pilihMenu == "3" || pilihMenu == "3.Kembali" {
+			done = true
 		}
-		if pilihMenu == "3" || pilihMenu == "3.Kembali" {
-			break
-		}
-		//fmt.Print("Ingin masukkan pertanyaan lagi (Ya/Tidak)? ")
-		//fmt.Scan(&ulang)
-		//if ulang == "Tidak" {
-		//	break
-		//}
 	}
+
 	menuBeranda(A, &M, *&n, indexUser)
 }
+
+
 
 func searchTrend(M *menuBerForm) {
 	//menggunakan search binary
