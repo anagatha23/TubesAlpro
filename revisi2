@@ -239,18 +239,19 @@ func forum1(F *ArrForum) {
 }
 
 func forum2(A *UserARR, F *ArrForum, n *int) {
-	var pertanyaan, pilihMenu string
+	var inpertanyaan, pilihMenu string
+	var inputPilih int
 	// var A UserARR
 	var M menuBerForm
 
-	fmt.Println("----------------")
-	fmt.Println(" ")
-	fmt.Println("1.Isiforum")
-	fmt.Println("2.Trending")
-	fmt.Println("3.Kembali")
-	fmt.Println("----------------")
-	fmt.Scan(&pilihMenu)
 	for pilihMenu != "3" || pilihMenu != "3.Kembali" {
+		fmt.Println("----------------")
+		fmt.Println(" ")
+		fmt.Println("1.Isiforum")
+		fmt.Println("2.Trending")
+		fmt.Println("3.Kembali")
+		fmt.Println("----------------")
+		fmt.Scan(&pilihMenu)
 		if pilihMenu == "1" || pilihMenu == "1.Isiforum" {
 			fmt.Println("Bagaimana Cara Mencegah Kanker?")
 			fmt.Println("Mencegah kanker melibatkan berbagai langkah sehat yang dapat diambil dalam kehidupan sehari-hari. Berikut ini adalah beberapa langkah yang dapat membantu dalam mencegah kanker:")
@@ -267,14 +268,28 @@ func forum2(A *UserARR, F *ArrForum, n *int) {
 			fmt.Println("Penyakit hepatitis dapat diobati tergantung pada jenis hepatitis yang dimiliki. Berikut ini adalah informasi mengenai pengobatan masing-masing jenis hepatitis:")
 			fmt.Println("")
 			fmt.Println("Silahkan Masukkan Pertanyaan: ")
-			fmt.Scan(&pertanyaan)
+			fmt.Scan(&inpertanyaan)
+			InputMultipleString(&inpertanyaan)
 
-			InputMultipleString(&pertanyaan)
-			menuBeranda(A, &M, *&n)
+			fmt.Println("----------------------------")
+			fmt.Println("1. Teruskan, 2.Batalkan")
+			fmt.Println("Pilihan :")
+			fmt.Scan(&inputPilih)
+			if inputPilih == 1 {
+				F[*n].Pertanyaan = inpertanyaan
+				*n++
+				fmt.Println("Pertanyaan Tersimpan")
+				fmt.Println(" ")
+			} else if inputPilih == 2 {
+				fmt.Println("pertanyaan Dibatalkan")
+			}
 
 		} else if pilihMenu == "2" || pilihMenu == "2.Trending" {
 			searchTrend(&M)
+		} else if pilihMenu == "3" || pilihMenu == "Kembali" {
+			menuBeranda(A, &M, n)
 		}
+
 	}
 }
 
